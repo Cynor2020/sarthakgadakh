@@ -1,0 +1,419 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500|Jost:400,500,600&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #2b2c48;
+  font-family: "Jost", sans-serif;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.card {
+  max-width: 340px;
+  margin: auto;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden;
+  background-color: rgba(255, 255, 255, 0.0);
+  display: flex;
+  transition: 0.3s;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.0);
+}
+
+.card[data-state="#about"] {
+  height: 450px;
+}
+.card[data-state="#about"] .card-main {
+  padding-top: 0;
+}
+
+.card[data-state="#contact"] {
+  height: 430px;
+}
+
+.card[data-state="#experience"] {
+  height: 550px;
+}
+
+.card.is-active .card-header {
+  height: 80px;
+}
+.card.is-active .card-cover {
+  height: 100px;
+  top: -50px;
+}
+.card.is-active .card-avatar {
+  transform: none;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  bottom: 10px;
+}
+.card.is-active .card-fullname,
+.card.is-active .card-jobtitle {
+  left: 86px;
+  transform: none;
+}
+.card.is-active .card-fullname {
+  bottom: 18px;
+  font-size: 19px;
+}
+.card.is-active .card-jobtitle {
+  bottom: 16px;
+  letter-spacing: 1px;
+  font-size: 10px;
+}
+
+.card-header {
+  position: relative;
+  display: flex;
+  height: 200px;
+  flex-shrink: 0;
+  width: 100%;
+  transition: 0.3s;
+}
+.card-header * {
+  transition: 0.3s;
+}
+
+.card-cover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -20%;
+  left: 0;
+  will-change: top;
+  background-size: cover;
+  background-position: center;
+  filter: blur(30px);
+  transform: scale(1.2);
+  transition: 0.5s;
+}
+
+.card-avatar {
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-64px);
+}
+
+.card-fullname {
+  color: white;
+  position: absolute;
+  bottom: 0;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  transform: translateY(-10px) translateX(-50%);
+  left: 50%;
+}
+
+.card-jobtitle {
+  color: white;
+  position: absolute;
+  bottom: 0;
+  font-size: 11px;
+  white-space: nowrap;
+  font-weight: 500;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-7px);
+}
+
+.card-main {
+  position: relative;
+  flex: 1;
+  display: flex;
+  padding-top: 10px;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card-subtitle {
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-desc {
+  line-height: 1.6;
+  color: #ffffff;
+  font-size: 14px;
+  margin: 0;
+  font-weight: 400;
+  font-family: "DM Sans", sans-serif;
+}
+
+.card-social {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 30px;
+}
+.card-social svg {
+  fill: #a5b5ce;
+  width: 16px;
+  display: block;
+  transition: 0.3s;
+}
+.card-social a {
+  color: #8797a1;
+  height: 32px;
+  width: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  background-color: rgba(93, 133, 193, 0.05);
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.card-social a:hover svg {
+  fill: #637faa;
+}
+.card-social a:last-child {
+  margin-right: 0;
+}
+
+.card-buttons {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.082);
+  margin-top: auto;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+}
+.card-buttons button {
+  flex: 1 1 auto;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background: 0;
+  font-size: 13px;
+  border: 0;
+  padding: 15px 5px;
+  cursor: pointer;
+  color: #ffffff;
+  transition: 0.3s;
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  outline: 0;
+  border-bottom: 3px solid transparent;
+}
+.card-buttons button.is-active, .card-buttons button:hover {
+  color: #ffffff;
+  border-bottom: 3px solid #8a84ff;
+  background: linear-gradient(to bottom, rgba(127, 199, 231, 0) 0%, rgba(207, 204, 255, 0.2) 44%, rgba(211, 226, 255, 0.4) 100%);
+}
+
+.card-section {
+  display: none;
+}
+.card-section.is-active {
+  display: block;
+  -webkit-animation: fadeIn 0.6s both;
+          animation: fadeIn 0.6s both;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translatey(40px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translatey(40px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.card-timeline {
+  margin-top: 30px;
+  position: relative;
+}
+.card-timeline:after {
+  background: linear-gradient(to top, rgba(134, 214, 243, 0) 0%, #516acc 100%);
+  content: "";
+  left: 42px;
+  width: 2px;
+  top: 0;
+  height: 100%;
+  position: absolute;
+}
+
+.card-item {
+  position: relative;
+  padding-left: 60px;
+  padding-right: 20px;
+  padding-bottom: 30px;
+  z-index: 1;
+}
+.card-item:last-child {
+  padding-bottom: 5px;
+}
+.card-item:after {
+  content: attr(data-year);
+  position: absolute;
+  top: 0;
+  left: 37px;
+  width: 8px;
+  height: 8px;
+  line-height: 0.6;
+  border: 2px solid #fff;
+  font-size: 11px;
+  text-indent: -35px;
+  border-radius: 50%;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(to bottom, #a0aee3 0%, #516acc 100%);
+}
+
+.card-item-title {
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.card-item-desc {
+  font-size: 13px;
+  color: #ffffff;
+  line-height: 1.5;
+  font-family: "DM Sans", sans-serif;
+}
+
+.card-contact-wrapper {
+  margin-top: 20px;
+}
+
+.card-contact {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #ffffff;
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.6;
+  cursor: pointer;
+}
+.card-contact + .card-contact {
+  margin-top: 16px;
+}
+.card-contact svg {
+  flex-shrink: 0;
+  width: 30px;
+  min-height: 34px;
+  margin-right: 12px;
+  transition: 0.3s;
+  padding-right: 12px;
+  border-right: 1px solid #dfe2ec;
+}
+
+.contact-me {
+  border: 0;
+  outline: none;
+  background: linear-gradient(to right, rgba(83, 200, 239, 0.8) 0%, rgba(81, 106, 204, 0.8) 96%);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  color: #ffffff;
+  padding: 12px 16px;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Jost", sans-serif;
+  transition: 0.3s;
+}
+
+
+
+
+html {
+  font: 5vmin/1.3 Serif;
+  overflow: hidden;
+  background: #123;
+}
+
+body, head {
+  display: block;
+  font-size: 52px;
+  color: transparent;
+}
+
+head::before, head::after,
+body::before, body::after {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 3em;
+  height: 3em;
+  content: ".";
+  mix-blend-mode: screen;
+  animation: 44s -27s move infinite ease-in-out alternate;
+}
+
+body::before {
+  text-shadow: -0.3539839999em 1.5502093853em 7px rgba(124, 255, 0, 0.9), 0.5151330433em 0.5190846636em 7px rgba(0, 248, 255, 0.9), 1.9304451096em 2.2050842018em 7px rgba(227, 255, 0, 0.9), -0.0320632702em -0.0453275986em 7px rgba(255, 0, 253, 0.9), 1.2476188184em 1.4475061539em 7px rgba(255, 2, 0, 0.9), 1.0730169271em -0.1709002483em 7px rgba(255, 0, 15, 0.9), -0.3455537833em -0.1914125988em 7px rgba(136, 255, 0, 0.9), 2.045948502em 1.4782293947em 7px rgba(0, 232, 255, 0.9), 0.6316988332em 1.1117424072em 7px rgba(242, 0, 255, 0.9), 0.6923803972em -0.1620121007em 7px rgba(255, 10, 0, 0.9), 1.7109655018em 0.3179006477em 7px rgba(152, 255, 0, 0.9), -0.1569571299em 0.9522031656em 7px rgba(255, 15, 0, 0.9), 2.1061338159em -0.3367669544em 7px rgba(255, 254, 0, 0.9), 0.9861627878em -0.3924862033em 7px rgba(255, 0, 235, 0.9), 1.2745234766em 2.4519164695em 7px rgba(0, 50, 255, 0.9), 0.8688797388em 1.6646694293em 7px rgba(238, 0, 255, 0.9), -0.4998514353em 0.0649736704em 7px rgba(0, 255, 111, 0.9), 2.3533552802em 0.862543897em 7px rgba(0, 255, 181, 0.9), 2.1844126773em 0.4330102855em 7px rgba(41, 0, 255, 0.9), 1.7672173671em 1.0882117628em 7px rgba(35, 255, 0, 0.9), 0.5477887042em 1.1823593139em 7px rgba(0, 223, 255, 0.9), 1.2007217201em 0.7188070366em 7px rgba(114, 255, 0, 0.9), 1.4300266111em 0.7161491531em 7px rgba(94, 0, 255, 0.9), 0.7999199749em 0.4168207422em 7px rgba(0, 255, 188, 0.9), 2.0708339981em -0.1674194208em 7px rgba(255, 47, 0, 0.9), -0.2169114301em 0.0918169657em 7px rgba(0, 195, 255, 0.9), 2.2344177912em -0.0788512518em 7px rgba(255, 0, 133, 0.9), -0.1511726945em 1.9689444846em 7px rgba(164, 0, 255, 0.9), 0.5980696506em -0.0646621903em 7px rgba(255, 0, 149, 0.9), 0.841992029em 0.4263777209em 7px rgba(118, 0, 255, 0.9), -0.4022853469em 0.8498008621em 7px rgba(165, 0, 255, 0.9), 1.4159187387em 1.5290098602em 7px rgba(0, 255, 138, 0.9), 0.5845768272em 1.8126252745em 7px rgba(8, 0, 255, 0.9), 1.5957157102em 2.4045788912em 7px rgba(255, 0, 129, 0.9), 2.1070727461em 0.1964556195em 7px rgba(90, 255, 0, 0.9), 0.4795592485em 1.4805487646em 7px rgba(255, 23, 0, 0.9), 2.0769549998em -0.1302918982em 7px rgba(255, 113, 0, 0.9), 1.1735723666em 0.6030172437em 7px rgba(255, 31, 0, 0.9), 2.1154161152em 0.2277687398em 7px rgba(0, 67, 255, 0.9), -0.4172203599em 1.6476637783em 7px rgba(255, 0, 102, 0.9), 2.4435747748em -0.1023964154em 7px rgba(255, 0, 49, 0.9);
+  animation-duration: 14s;
+  animation-delay: -27s;
+}
+
+body::after {
+  text-shadow: 1.6511906602em 0.4321009297em 7px rgba(0, 255, 15, 0.9), 2.0454645474em 1.3771633566em 7px rgba(255, 170, 0, 0.9), 0.6171418025em 1.8710854781em 7px rgba(0, 255, 218, 0.9), 0.9906461714em -0.2665569488em 7px rgba(0, 255, 195, 0.9), 0.0151315824em 1.4602670577em 7px rgba(202, 255, 0, 0.9), 0.1645457771em -0.2331151556em 7px rgba(255, 0, 21, 0.9), 0.5602649536em 1.0806508524em 7px rgba(125, 255, 0, 0.9), 1.250529168em 1.7822212309em 7px rgba(255, 0, 169, 0.9), 2.2663251648em -0.1745507437em 7px rgba(0, 107, 255, 0.9), 1.1384030703em 0.3784679239em 7px rgba(255, 0, 203, 0.9), 1.2009400216em 2.0250135451em 7px rgba(0, 30, 255, 0.9), 0.0418464051em 2.1073987491em 7px rgba(255, 154, 0, 0.9), 1.8677482797em 2.3585671638em 7px rgba(0, 255, 249, 0.9), 1.5294949922em -0.3742642084em 7px rgba(0, 252, 255, 0.9), 0.6605238595em -0.0457411631em 7px rgba(255, 91, 0, 0.9), 1.5593934743em 0.8517975189em 7px rgba(255, 39, 0, 0.9), -0.0565495566em 2.0835026491em 7px rgba(148, 255, 0, 0.9), -0.4648151791em -0.3875492053em 7px rgba(100, 0, 255, 0.9), 1.2473934254em 1.2087948615em 7px rgba(38, 255, 0, 0.9), 1.3622592416em 0.9483666433em 7px rgba(255, 161, 0, 0.9), 1.7898871779em 2.0421243926em 7px rgba(0, 107, 255, 0.9), -0.1754103811em 0.0436843667em 7px rgba(255, 183, 0, 0.9), -0.0051152332em 0.1094726333em 7px rgba(0, 28, 255, 0.9), 0.6979596501em 1.3462382681em 7px rgba(136, 0, 255, 0.9), -0.073758195em -0.2631008834em 7px rgba(255, 112, 0, 0.9), -0.3754993504em -0.0127602121em 7px rgba(255, 0, 87, 0.9), 0.618913363em 0.9270946418em 7px rgba(158, 255, 0, 0.9), 1.9177287407em 1.9684244927em 7px rgba(255, 60, 0, 0.9), 0.7447193972em 0.1934119544em 7px rgba(255, 0, 242, 0.9), -0.3300341784em 2.0452078584em 7px rgba(255, 2, 0, 0.9), 2.3277242744em 0.3009622246em 7px rgba(0, 255, 110, 0.9), 1.2688927795em -0.0776773095em 7px rgba(57, 255, 0, 0.9), 0.1551035683em 0.2220289432em 7px rgba(5, 0, 255, 0.9), 2.1186289621em 0.9770138417em 7px rgba(56, 255, 0, 0.9), 1.0753020184em 1.0730817933em 7px rgba(0, 169, 255, 0.9), 2.274222336em 1.2028114623em 7px rgba(0, 255, 127, 0.9), 0.8493390802em 1.1800687036em 7px rgba(255, 0, 115, 0.9), -0.4281252392em 1.3566030705em 7px rgba(0, 69, 255, 0.9), -0.4824765917em -0.0815479487em 7px rgba(0, 255, 194, 0.9), 0.7876556752em 2.2474649953em 7px rgba(255, 0, 56, 0.9), 2.264243471em 0.3384382804em 7px rgba(17, 255, 0, 0.9);
+  animation-duration: 13s;
+  animation-delay: -32s;
+}
+
+head::before {
+  text-shadow: 0.5413489295em 1.2474611384em 7px rgba(0, 255, 119, 0.9), 0.6720350722em 1.773202467em 7px rgba(255, 118, 0, 0.9), 2.3222218042em 2.3852547705em 7px rgba(255, 0, 128, 0.9), 2.1040246821em 2.3900690408em 7px rgba(116, 0, 255, 0.9), 2.3282133552em 1.8672728017em 7px rgba(83, 0, 255, 0.9), -0.3344971586em 0.9416994343em 7px rgba(0, 26, 255, 0.9), 1.7695519136em 1.6509584716em 7px rgba(255, 90, 0, 0.9), 2.1196918735em 0.4460474851em 7px rgba(15, 255, 0, 0.9), -0.4558601356em 2.3922641238em 7px rgba(255, 0, 151, 0.9), -0.4212267082em 0.0625711016em 7px rgba(8, 255, 0, 0.9), 2.3672283618em 0.9608171675em 7px rgba(0, 121, 255, 0.9), 1.9509565474em 1.1202244049em 7px rgba(255, 0, 86, 0.9), 2.1240782647em 2.144998483em 7px rgba(61, 255, 0, 0.9), 0.8492819728em 1.0574950235em 7px rgba(0, 255, 105, 0.9), -0.1015881022em 1.1431161248em 7px rgba(11, 0, 255, 0.9), 0.9435896958em 1.0739965379em 7px rgba(0, 255, 252, 0.9), 0.2670258474em -0.1143465802em 7px rgba(0, 101, 255, 0.9), -0.3331245012em -0.13986318em 7px rgba(223, 0, 255, 0.9), -0.4225206936em 1.9410244578em 7px rgba(255, 0, 122, 0.9), 1.7873710296em 2.3173211266em 7px rgba(147, 0, 255, 0.9), 0.5507251321em 1.9090851574em 7px rgba(15, 0, 255, 0.9), 0.9579440759em 0.5238204684em 7px rgba(58, 0, 255, 0.9), 2.4480738983em 0.0776439288em 7px rgba(33, 255, 0, 0.9), 2.110074267em 0.8493241849em 7px rgba(255, 0, 248, 0.9), 0.5885215904em 1.1226463319em 7px rgba(255, 0, 207, 0.9), -0.3093323902em 0.7295463019em 7px rgba(255, 131, 0, 0.9), -0.2274101679em 1.869002384em 7px rgba(18, 255, 0, 0.9), 0.2533230226em 0.4029890435em 7px rgba(0, 82, 255, 0.9), 1.126458414em 1.057388392em 7px rgba(0, 255, 246, 0.9), 1.2955205641em 0.1417488403em 7px rgba(155, 0, 255, 0.9), 1.0820367783em 1.6127413398em 7px rgba(240, 255, 0, 0.9), -0.2243166357em 1.1588210043em 7px rgba(255, 0, 226, 0.9), 0.08846321em 0.7454510364em 7px rgba(0, 255, 233, 0.9), 1.4411374457em 1.2832159723em 7px rgba(255, 91, 0, 0.9), 0.077756637em -0.2881916145em 7px rgba(234, 0, 255, 0.9), 2.0165647568em 0.4067724786em 7px rgba(126, 0, 255, 0.9), 1.2744995585em 1.5243040976em 7px rgba(197, 255, 0, 0.9), 0.6602410021em -0.3889846679em 7px rgba(0, 255, 172, 0.9), -0.2607471581em 2.357242674em 7px rgba(24, 255, 0, 0.9), 2.4210834593em -0.3001311816em 7px rgba(255, 255, 0, 0.9), 1.9973000047em 0.5638351368em 7px rgba(0, 142, 255, 0.9);
+  animation-duration: 42s;
+  animation-delay: -23s;
+}
+
+head::after {
+  text-shadow: 1.7137428695em 1.6935992036em 7px rgba(113, 0, 255, 0.9), 1.59794654em 0.0803568053em 7px rgba(255, 253, 0, 0.9), 1.0375607958em 1.5460662953em 7px rgba(255, 237, 0, 0.9), -0.4745320522em 1.5439242886em 7px rgba(0, 255, 161, 0.9), 0.9764228964em 1.7483826984em 7px rgba(75, 0, 255, 0.9), 1.3737867803em 2.4798751495em 7px rgba(0, 17, 255, 0.9), 0.6472123458em 0.8086543068em 7px rgba(43, 0, 255, 0.9), 1.6868688085em 1.5045165873em 7px rgba(255, 0, 195, 0.9), 1.3595601023em 1.1786439926em 7px rgba(0, 54, 255, 0.9), 1.1764480942em -0.488500411em 7px rgba(255, 0, 231, 0.9), 2.0456699142em 0.4208242802em 7px rgba(255, 204, 0, 0.9), -0.4141888304em 2.0542204334em 7px rgba(255, 0, 147, 0.9), 0.0817325328em 0.7816484211em 7px rgba(255, 0, 157, 0.9), 1.7581068096em 0.6853154602em 7px rgba(255, 0, 84, 0.9), 1.3094800896em 0.5067075159em 7px rgba(255, 175, 0, 0.9), 2.1351529999em 0.4284031927em 7px rgba(46, 255, 0, 0.9), 2.0062385232em 1.0918091977em 7px rgba(255, 0, 176, 0.9), -0.0737654254em 0.2985120457em 7px rgba(255, 0, 78, 0.9), 0.7377621663em 2.0394594402em 7px rgba(0, 176, 255, 0.9), 1.2757971613em 1.465294506em 7px rgba(0, 255, 124, 0.9), 1.7591220327em -0.2272548411em 7px rgba(0, 182, 255, 0.9), 2.4335986544em -0.4352795655em 7px rgba(0, 255, 80, 0.9), -0.1150642821em 1.1651775117em 7px rgba(0, 255, 30, 0.9), 2.141845062em -0.3454880554em 7px rgba(39, 0, 255, 0.9), 1.4131939849em 2.1381821457em 7px rgba(0, 255, 37, 0.9), 0.889655638em 2.244096439em 7px rgba(255, 158, 0, 0.9), 1.135673815em 0.8698849302em 7px rgba(255, 0, 145, 0.9), 1.326660526em -0.4006121919em 7px rgba(255, 70, 0, 0.9), 2.310530516em 1.173690349em 7px rgba(166, 0, 255, 0.9), 0.36163819em 0.3426015788em 7px rgba(255, 0, 238, 0.9), 0.0552110756em 0.6809600269em 7px rgba(255, 169, 0, 0.9), -0.0932274988em 0.8784198622em 7px rgba(255, 0, 90, 0.9), 1.0281889539em 2.0705467451em 7px rgba(183, 255, 0, 0.9), -0.3962954657em -0.2127850703em 7px rgba(197, 0, 255, 0.9), 0.8622648667em -0.416874866em 7px rgba(255, 33, 0, 0.9), -0.3489815987em -0.312197769em 7px rgba(244, 0, 255, 0.9), -0.4819330842em -0.2572981063em 7px rgba(0, 225, 255, 0.9), 0.0931371346em 0.1478391301em 7px rgba(142, 0, 255, 0.9), 1.5915609402em 0.8627177537em 7px rgba(255, 0, 47, 0.9), 2.2314391362em -0.4910542714em 7px rgba(245, 255, 0, 0.9), -0.4441928301em 2.3012342857em 7px rgba(120, 255, 0, 0.9);
+  animation-duration: 41s;
+  animation-delay: -19s;
+}
+
+@keyframes move {
+  from {
+    transform: rotate(0deg) scale(12) translateX(-20px);
+  }
+  to {
+    transform: rotate(360deg) scale(18) translateX(20px);
+  }
+}
